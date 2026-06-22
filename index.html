@@ -3,33 +3,112 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SSB WAT Simulator — Accurately replicate the Word Association Test from the SSB Psychology examination. Practice with 1000+ curated words, military-grade timer, and distraction-free interface." />
-  <meta name="keywords" content="SSB, WAT, Word Association Test, Psychology Test, Indian Army, Defence, SSB Preparation" />
-  <meta name="author" content="SSB WAT Simulator" />
-  <meta property="og:title" content="SSB WAT Simulator" />
-  <meta property="og:description" content="Practice the Word Association Test used in SSB interviews. Distraction-free, timed, military-grade simulator." />
+  <meta name="description" content="SSB Psychology Test Simulator — Practice WAT (Word Association Test) and PPDT (Picture Perception & Description Test) used in SSB interviews for Indian Armed Forces." />
+  <meta name="keywords" content="SSB, WAT, PPDT, Word Association Test, Picture Perception, Psychology Test, Indian Army, Defence, SSB Preparation" />
+  <meta name="author" content="SSB Psychology Simulator" />
+  <meta property="og:title" content="SSB Psychology Simulator — WAT & PPDT" />
+  <meta property="og:description" content="Practice WAT and PPDT tests used in SSB interviews. Distraction-free, timed, military-grade simulator." />
   <meta property="og:type" content="website" />
-  <title>SSB WAT Simulator — Word Association Test</title>
+  <title>SSB Psychology Simulator — WAT & PPDT</title>
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⭐</text></svg>" />
 </head>
 <body>
   <div id="app">
 
     <!-- ══════════════════════════════════════════════════ -->
-    <!--  LANDING SCREEN                                   -->
+    <!--  HOME SCREEN                                       -->
     <!-- ══════════════════════════════════════════════════ -->
-    <section id="screen-landing" class="screen" role="main" aria-label="SSB WAT Simulator Landing">
+    <section id="screen-home" class="screen" role="main" aria-label="SSB Psychology Simulator Home">
+      <div class="home-bg-grid" aria-hidden="true"></div>
+      <div class="home-inner">
 
-      <div class="landing-inner">
-
-        <!-- Corps Badge -->
         <div class="badge-corps">
           <span class="badge-dot"></span>
           Services Selection Board
         </div>
 
-        <!-- Title -->
+        <div class="app-title">
+          <span class="title-pre">SSB Psychology</span>
+          <h1 class="title-main">Test Simulator</h1>
+          <p class="title-sub">Official-timing practice for WAT &amp; PPDT</p>
+        </div>
+
+        <div class="gold-divider"></div>
+
+        <div class="test-selector" role="group" aria-label="Select a test to practice">
+
+          <!-- WAT Card -->
+          <button class="test-card" id="card-wat" aria-label="Start WAT — Word Association Test">
+            <div class="test-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+              </svg>
+            </div>
+            <div class="test-card-body">
+              <div class="test-card-tag">Day 1 · Psychology</div>
+              <div class="test-card-name">WAT</div>
+              <div class="test-card-full">Word Association Test</div>
+              <ul class="test-card-info">
+                <li><span class="info-dot"></span>60 words · 15 sec each</li>
+                <li><span class="info-dot"></span>Write first thought on paper</li>
+                <li><span class="info-dot"></span>Randomised every session</li>
+              </ul>
+            </div>
+            <div class="test-card-arrow" aria-hidden="true">→</div>
+          </button>
+
+          <!-- PPDT Card -->
+          <button class="test-card" id="card-ppdt" aria-label="Start PPDT — Picture Perception and Description Test">
+            <div class="test-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+              </svg>
+            </div>
+            <div class="test-card-body">
+              <div class="test-card-tag">Day 1 · Screening</div>
+              <div class="test-card-name">PPDT</div>
+              <div class="test-card-full">Picture Perception &amp; Description Test</div>
+              <ul class="test-card-info">
+                <li><span class="info-dot"></span>1 hazy image · 30 sec viewing</li>
+                <li><span class="info-dot"></span>4 min to write story on paper</li>
+                <li><span class="info-dot"></span>Random image each session</li>
+              </ul>
+            </div>
+            <div class="test-card-arrow" aria-hidden="true">→</div>
+          </button>
+
+        </div>
+
+        <div class="home-footer">
+          <span class="key">F</span> Fullscreen &nbsp;·&nbsp; <span class="key">M</span> Mute &nbsp;·&nbsp; <span class="key">ESC</span> Exit
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!--  WAT: LANDING SCREEN                              -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <section id="screen-wat-landing" class="screen" role="main" aria-label="WAT Simulator Setup">
+      <div class="landing-inner">
+
+        <button class="back-btn" id="btn-wat-back" aria-label="Back to home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+          Back
+        </button>
+
+        <div class="badge-corps">
+          <span class="badge-dot"></span>
+          Word Association Test
+        </div>
+
         <div class="app-title">
           <span class="title-pre">SSB Psychology Test</span>
           <h1 class="title-main">WAT Simulator</h1>
@@ -38,7 +117,6 @@
 
         <div class="gold-divider"></div>
 
-        <!-- Instructions -->
         <div class="instructions-card">
           <div class="card-header">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -47,34 +125,15 @@
             Instructions
           </div>
           <ul class="instructions-list">
-            <li>
-              <span class="inst-num">01</span>
-              <span>One word will appear every <strong>15 seconds</strong> on screen.</span>
-            </li>
-            <li>
-              <span class="inst-num">02</span>
-              <span>Write the <strong>first meaningful thought</strong> that comes to mind.</span>
-            </li>
-            <li>
-              <span class="inst-num">03</span>
-              <span>Use a <strong>notebook or answer sheet</strong> — no typing required.</span>
-            </li>
-            <li>
-              <span class="inst-num">04</span>
-              <span>Do <strong>not pause</strong> to think excessively. Write immediately.</span>
-            </li>
-            <li>
-              <span class="inst-num">05</span>
-              <span>A <strong>buzzer</strong> will sound when time is up for each word.</span>
-            </li>
-            <li>
-              <span class="inst-num">06</span>
-              <span>Words are <strong>randomised</strong> every session for genuine practice.</span>
-            </li>
+            <li><span class="inst-num">01</span><span>One word will appear every <strong>15 seconds</strong> on screen.</span></li>
+            <li><span class="inst-num">02</span><span>Write the <strong>first meaningful thought</strong> that comes to mind.</span></li>
+            <li><span class="inst-num">03</span><span>Use a <strong>notebook or answer sheet</strong> — no typing required.</span></li>
+            <li><span class="inst-num">04</span><span>Do <strong>not pause</strong> to think excessively. Write immediately.</span></li>
+            <li><span class="inst-num">05</span><span>A <strong>buzzer</strong> will sound when time is up for each word.</span></li>
+            <li><span class="inst-num">06</span><span>Words are <strong>randomised</strong> every session for genuine practice.</span></li>
           </ul>
         </div>
 
-        <!-- Settings Panel -->
         <div class="settings-panel">
           <div class="setting-group">
             <div class="setting-label">Word Count</div>
@@ -96,73 +155,50 @@
           </div>
         </div>
 
-        <!-- Config Summary -->
         <div class="config-summary">
           <span>Words: <span class="config-val" id="selected-words">60</span></span>
           <span>Time/word: <span class="config-val" id="selected-time">15</span>s</span>
           <span>Total: <span class="config-val" id="total-duration">15 min</span></span>
         </div>
 
-        <!-- Start Button -->
         <div class="btn-start-wrap">
-          <button class="btn-start" id="btn-start" aria-label="Start WAT Test">
-            ▶&nbsp;&nbsp;BEGIN TEST
+          <button class="btn-start" id="btn-wat-start" aria-label="Start WAT Test">
+            ▶&nbsp;&nbsp;BEGIN WAT TEST
           </button>
           <span class="btn-hint">Press SPACE to start</span>
         </div>
 
-        <!-- Keyboard Shortcuts -->
         <div class="shortcuts-bar" aria-label="Keyboard shortcuts">
-          <div class="shortcut-item">
-            <span class="key">SPACE</span>
-            <span>Start Test</span>
-          </div>
-          <div class="shortcut-item">
-            <span class="key">F</span>
-            <span>Fullscreen</span>
-          </div>
-          <div class="shortcut-item">
-            <span class="key">M</span>
-            <span>Mute/Unmute</span>
-          </div>
-          <div class="shortcut-item">
-            <span class="key">ESC</span>
-            <span>Exit Test</span>
-          </div>
+          <div class="shortcut-item"><span class="key">SPACE</span><span>Start Test</span></div>
+          <div class="shortcut-item"><span class="key">F</span><span>Fullscreen</span></div>
+          <div class="shortcut-item"><span class="key">M</span><span>Mute/Unmute</span></div>
+          <div class="shortcut-item"><span class="key">ESC</span><span>Exit Test</span></div>
         </div>
 
       </div>
     </section>
 
     <!-- ══════════════════════════════════════════════════ -->
-    <!--  TEST SCREEN                                      -->
+    <!--  WAT: TEST SCREEN                                 -->
     <!-- ══════════════════════════════════════════════════ -->
-    <section id="screen-test" class="screen" role="main" aria-label="WAT Test in Progress" aria-live="polite">
+    <section id="screen-wat-test" class="screen" role="main" aria-label="WAT Test in Progress" aria-live="polite">
 
-      <!-- Top Controls Bar -->
       <nav class="test-controls" aria-label="Test controls">
-        <!-- Left: Exit -->
         <div class="control-group">
-          <button class="control-btn exit-btn" id="btn-exit" title="Exit Test (ESC)" aria-label="Exit test">
+          <button class="control-btn exit-btn" id="btn-wat-exit" title="Exit Test (ESC)" aria-label="Exit test">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-              <polyline points="16 17 21 12 16 7"/>
-              <line x1="21" y1="12" x2="9" y2="12"/>
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
             </svg>
           </button>
         </div>
-
-        <!-- Center: Progress -->
         <div class="progress-badge" aria-label="Progress">
-          <strong id="progress-text">1 / 60</strong>
+          <strong id="wat-progress-text">1 / 60</strong>
         </div>
-
-        <!-- Right: Controls -->
         <div class="control-group">
-          <button class="control-btn" id="btn-mute" title="Mute (M)" aria-label="Toggle sound">
-            <span id="mute-icon"></span>
+          <button class="control-btn" id="btn-wat-mute" title="Mute (M)" aria-label="Toggle sound">
+            <span id="wat-mute-icon"></span>
           </button>
-          <button class="control-btn" id="btn-fullscreen" title="Toggle Fullscreen (F)" aria-label="Toggle fullscreen">
+          <button class="control-btn" id="btn-wat-fullscreen" title="Toggle Fullscreen (F)" aria-label="Toggle fullscreen">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
             </svg>
@@ -170,101 +206,244 @@
         </div>
       </nav>
 
-      <!-- Ambient Glow -->
       <div class="ambient-glow" aria-hidden="true"></div>
 
-      <!-- Main Test Area -->
       <div class="test-main">
-
-        <!-- Word Display -->
         <div class="word-container">
-          <div class="word-display" id="word-display" aria-label="Current word" role="status">
-            READY
-          </div>
+          <div class="word-display" id="word-display" aria-label="Current word" role="status">READY</div>
         </div>
-
-        <!-- Timer Ring -->
         <div class="timer-wrapper" aria-label="Countdown timer">
           <div class="timer-svg-wrap">
             <svg class="timer-svg" viewBox="0 0 120 120" aria-hidden="true">
               <circle class="timer-bg-circle" cx="60" cy="60" r="54"/>
-              <circle class="timer-ring" id="timer-ring" cx="60" cy="60" r="54"/>
+              <circle class="timer-ring" id="wat-timer-ring" cx="60" cy="60" r="54"/>
             </svg>
-            <div class="timer-number" id="timer-number" aria-live="off">15</div>
+            <div class="timer-number" id="wat-timer-number" aria-live="off">15</div>
           </div>
           <div class="timer-label">seconds</div>
         </div>
-
       </div>
 
-      <!-- Bottom Progress Bar -->
       <div class="progress-bar-track" role="progressbar" aria-label="Test progress">
-        <div class="progress-bar-fill" id="progress-bar-fill"></div>
+        <div class="progress-bar-fill" id="wat-progress-bar-fill"></div>
       </div>
 
     </section>
 
     <!-- ══════════════════════════════════════════════════ -->
-    <!--  COMPLETION SCREEN                                -->
+    <!--  WAT: COMPLETE SCREEN                             -->
     <!-- ══════════════════════════════════════════════════ -->
-    <section id="screen-complete" class="screen" role="main" aria-label="Test Complete">
-
+    <section id="screen-wat-complete" class="screen" role="main" aria-label="WAT Test Complete">
       <div class="complete-inner">
-
-        <!-- Success Icon -->
         <div class="complete-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <polyline points="20 6 9 17 4 12"/>
           </svg>
         </div>
-
-        <!-- Title -->
         <div>
-          <h1 class="complete-title">Test Complete</h1>
+          <h1 class="complete-title">WAT Complete</h1>
           <p class="complete-sub">Well done, Candidate. Stay focused.</p>
         </div>
-
         <div class="gold-divider"></div>
-
-        <!-- Stats -->
         <div class="stats-grid">
           <div class="stat-card">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-              <line x1="16" y1="13" x2="8" y2="13"/>
-              <line x1="16" y1="17" x2="8" y2="17"/>
-              <polyline points="10 9 9 9 8 9"/>
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
             </svg>
-            <span class="stat-value" id="stat-words">60</span>
+            <span class="stat-value" id="wat-stat-words">60</span>
             <span class="stat-label">Words Shown</span>
           </div>
           <div class="stat-card">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-              <circle cx="12" cy="12" r="10"/>
-              <polyline points="12 6 12 12 16 14"/>
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
             </svg>
-            <span class="stat-value" id="stat-duration">15m 0s</span>
+            <span class="stat-value" id="wat-stat-duration">15m 0s</span>
             <span class="stat-label">Duration</span>
           </div>
         </div>
-
-        <!-- Motivational Quote -->
         <blockquote class="complete-quote">
           "The soldier is the Army. No army is better than its soldiers."
           — General George S. Patton
         </blockquote>
-
-        <!-- Action Buttons -->
         <div class="complete-actions">
-          <button class="btn-primary" id="btn-restart" aria-label="Restart test with same settings">
-            ↺&nbsp;&nbsp;Restart Same Test
-          </button>
-          <button class="btn-secondary" id="btn-new-random" aria-label="Start new random test">
-            ⟳&nbsp;&nbsp;New Random Session
-          </button>
+          <button class="btn-primary" id="btn-wat-restart" aria-label="Restart WAT test">↺&nbsp;&nbsp;Restart WAT</button>
+          <button class="btn-secondary" id="btn-wat-home" aria-label="Back to home">⌂&nbsp;&nbsp;Back to Home</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!--  PPDT: LANDING SCREEN                             -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <section id="screen-ppdt-landing" class="screen" role="main" aria-label="PPDT Simulator Setup">
+      <div class="landing-inner">
+
+        <button class="back-btn" id="btn-ppdt-back" aria-label="Back to home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+          Back
+        </button>
+
+        <div class="badge-corps">
+          <span class="badge-dot"></span>
+          Picture Perception &amp; Description Test
         </div>
 
+        <div class="app-title">
+          <span class="title-pre">SSB Screening Test</span>
+          <h1 class="title-main">PPDT Simulator</h1>
+          <p class="title-sub">Picture Perception &amp; Description Test</p>
+        </div>
+
+        <div class="gold-divider"></div>
+
+        <div class="instructions-card">
+          <div class="card-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            Instructions
+          </div>
+          <ul class="instructions-list">
+            <li><span class="inst-num">01</span><span>A <strong>hazy image</strong> will be shown for <strong>30 seconds</strong>. Observe carefully.</span></li>
+            <li><span class="inst-num">02</span><span>Note the <strong>number of characters</strong>, their mood, and the setting.</span></li>
+            <li><span class="inst-num">03</span><span>After the buzzer, image disappears. You have <strong>4 minutes</strong> to write.</span></li>
+            <li><span class="inst-num">04</span><span>Write a story on <strong>paper</strong> — beginning, middle, and end.</span></li>
+            <li><span class="inst-num">05</span><span>Keep your hero <strong>positive and action-oriented</strong>.</span></li>
+            <li><span class="inst-num">06</span><span>A <strong>random image</strong> is chosen each session — no repeats until all are seen.</span></li>
+          </ul>
+        </div>
+
+        <div class="ppdt-session-info" id="ppdt-session-info">
+          <!-- Filled by JS -->
+        </div>
+
+        <div class="btn-start-wrap">
+          <button class="btn-start btn-start-ppdt" id="btn-ppdt-start" aria-label="Start PPDT Session">
+            ▶&nbsp;&nbsp;BEGIN PPDT SESSION
+          </button>
+          <span class="btn-hint">Press SPACE to start</span>
+        </div>
+
+        <div class="shortcuts-bar" aria-label="Keyboard shortcuts">
+          <div class="shortcut-item"><span class="key">SPACE</span><span>Start Session</span></div>
+          <div class="shortcut-item"><span class="key">F</span><span>Fullscreen</span></div>
+          <div class="shortcut-item"><span class="key">M</span><span>Mute/Unmute</span></div>
+          <div class="shortcut-item"><span class="key">ESC</span><span>Exit</span></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!--  PPDT: IMAGE VIEWING SCREEN                       -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <section id="screen-ppdt-view" class="screen" role="main" aria-label="PPDT Image Viewing" aria-live="polite">
+
+      <nav class="test-controls" aria-label="PPDT viewing controls">
+        <div class="control-group">
+          <button class="control-btn exit-btn" id="btn-ppdt-exit" title="Exit (ESC)" aria-label="Exit PPDT">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+          </button>
+        </div>
+        <div class="ppdt-phase-badge" id="ppdt-phase-badge">
+          <span class="phase-dot phase-view"></span>
+          VIEWING PHASE
+        </div>
+        <div class="control-group">
+          <button class="control-btn" id="btn-ppdt-mute" title="Mute (M)" aria-label="Toggle sound">
+            <span id="ppdt-mute-icon"></span>
+          </button>
+          <button class="control-btn" id="btn-ppdt-fullscreen" title="Toggle Fullscreen (F)" aria-label="Toggle fullscreen">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <!-- PPDT Image Area -->
+      <div class="ppdt-view-main">
+        <div class="ppdt-image-frame" id="ppdt-image-frame">
+          <img class="ppdt-image" id="ppdt-image" src="" alt="PPDT stimulus image" />
+          <div class="ppdt-image-overlay" id="ppdt-image-overlay" aria-hidden="true"></div>
+        </div>
+
+        <div class="ppdt-timer-block">
+          <div class="timer-wrapper" aria-label="Countdown timer">
+            <div class="timer-svg-wrap">
+              <svg class="timer-svg" viewBox="0 0 120 120" aria-hidden="true">
+                <circle class="timer-bg-circle" cx="60" cy="60" r="54"/>
+                <circle class="timer-ring" id="ppdt-timer-ring" cx="60" cy="60" r="54"/>
+              </svg>
+              <div class="timer-number" id="ppdt-timer-number" aria-live="off">30</div>
+            </div>
+            <div class="timer-label" id="ppdt-timer-label">seconds remaining</div>
+          </div>
+          <div class="ppdt-phase-instruction" id="ppdt-phase-instruction">
+            Observe the image carefully. Note the characters, mood, and setting.
+          </div>
+        </div>
+      </div>
+
+      <div class="progress-bar-track" role="progressbar" aria-label="Phase progress">
+        <div class="progress-bar-fill ppdt-bar" id="ppdt-progress-bar-fill"></div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!--  PPDT: COMPLETE SCREEN                            -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <section id="screen-ppdt-complete" class="screen" role="main" aria-label="PPDT Session Complete">
+      <div class="complete-inner">
+        <div class="complete-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="complete-title">PPDT Complete</h1>
+          <p class="complete-sub">Story written. Review your OLQs.</p>
+        </div>
+        <div class="gold-divider"></div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+            </svg>
+            <span class="stat-value">1</span>
+            <span class="stat-label">Image Shown</span>
+          </div>
+          <div class="stat-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <span class="stat-value" id="ppdt-stat-duration">4m 30s</span>
+            <span class="stat-label">Total Duration</span>
+          </div>
+          <div class="stat-card ppdt-remaining-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            </svg>
+            <span class="stat-value" id="ppdt-stat-remaining">15</span>
+            <span class="stat-label">Images Left</span>
+          </div>
+        </div>
+        <div class="ppdt-story-reminder">
+          <div class="reminder-icon" aria-hidden="true">📝</div>
+          <p>Review your story. Did you include a <strong>positive hero</strong>, clear <strong>plot</strong>, and a <strong>resolution</strong>?</p>
+        </div>
+        <blockquote class="complete-quote">
+          "In every battle, the hero is not the one who never falls, but the one who always rises."
+        </blockquote>
+        <div class="complete-actions">
+          <button class="btn-primary" id="btn-ppdt-next" aria-label="Start next PPDT session">⟳&nbsp;&nbsp;Next Session</button>
+          <button class="btn-secondary" id="btn-ppdt-home" aria-label="Back to home">⌂&nbsp;&nbsp;Back to Home</button>
+        </div>
       </div>
     </section>
 
