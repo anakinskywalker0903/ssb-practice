@@ -5,6 +5,7 @@
 
 import WORD_BANK from './words.js';
 import PPDT_IMAGES from './images.js';
+import SRT_SITUATIONS from './situations.js';
 import WATTimer from './timer.js';
 import { playBeep, playTick, playStartChime, setMuted, getMuted } from './audio.js';
 
@@ -12,7 +13,8 @@ import { playBeep, playTick, playStartChime, setMuted, getMuted } from './audio.
 const RING_RADIUS = 54;
 const RING_CIRCUMFERENCE = 2 * Math.PI * RING_RADIUS;
 const PPDT_VIEW_SECONDS = 30;
-const PPDT_WRITE_SECONDS = 4 * 60; // 4 minutes
+const PPDT_WRITE_SECONDS = 4 * 60;
+const SRT_TIME_PER_SITUATION = 30;
 const PPDT_STORAGE_KEY = 'ssb_ppdt_seen';
 
 // ─── Screen Registry ──────────────────────────────────────────────────────────
@@ -24,6 +26,9 @@ const screens = {
   ppdtLanding:   document.getElementById('screen-ppdt-landing'),
   ppdtView:      document.getElementById('screen-ppdt-view'),
   ppdtComplete:  document.getElementById('screen-ppdt-complete'),
+  srtLanding:    document.getElementById('screen-srt-landing'),
+  srtTest:       document.getElementById('screen-srt-test'),
+  srtComplete:   document.getElementById('screen-srt-complete'),
 };
 
 function showScreen(name) {
@@ -438,6 +443,11 @@ document.getElementById('card-ppdt').addEventListener('click', () => {
   showScreen('ppdtLanding');
 });
 
+document.getElementById('card-srt').addEventListener('click', () => {
+  srtUpdateDuration();
+  showScreen('srtLanding');
+});
+
 // ─── Global Keyboard Shortcuts ────────────────────────────────────────────────
 document.addEventListener('keydown', (e) => {
   if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
@@ -452,6 +462,7 @@ document.addEventListener('keydown', (e) => {
       e.preventDefault();
       if (activeWatLanding)  watStartTest();
       if (activePpdtLanding) ppdtStartSession();
+      if (screens.srtLanding.classList.contains('active')) srtStartTest();
       break;
     case 'KeyF':
       e.preventDefault();
@@ -474,6 +485,12 @@ document.addEventListener('keydown', (e) => {
         exitFullscreen();
         showScreen('ppdtLanding');
       }
+      if (screens.srtTest.classList.contains('active')) {
+        srtTimer.stop();
+        srtState.running = false;
+        exitFullscreen();
+        showScreen('srtLanding');
+      }
       break;
   }
 });
@@ -488,9 +505,14 @@ function init() {
   ppdtEl.timerRing.style.strokeDasharray  = `${RING_CIRCUMFERENCE} ${RING_CIRCUMFERENCE}`;
   ppdtEl.timerRing.style.strokeDashoffset = 0;
 
+  // SRT ring init
+  srtEl.timerRing.style.strokeDasharray  = `${RING_CIRCUMFERENCE} ${RING_CIRCUMFERENCE}`;
+  srtEl.timerRing.style.strokeDashoffset = 0;
+
   // Mute icons
   applyMuteIcon(watEl.muteIcon, watEl.btnMute);
   applyMuteIcon(ppdtEl.muteIcon, ppdtEl.btnMute);
+  applyMuteIcon(srtEl.muteIcon, srtEl.btnMute);
 
   // WAT settings
   watInitSettings();
@@ -500,3 +522,133 @@ function init() {
 }
 
 init();
+
+// ══════════════════════════════════════════════════════════════════════════════
+//  SRT MODULE
+// ══════════════════════════════════════════════════════════════════════════════
+
+const srtState = {
+  situationCount: 60,
+  sessionSituations: [],
+  currentIndex: 0,
+  startTime: null,
+  running: false,
+};
+
+const srtEl = {
+  situationText:  document.getElementById('srt-situation-text'),
+  situationNum:   document.getElementById('srt-situation-num'),
+  timerNumber:    document.getElementById('srt-timer-number'),
+  timerRing:      document.getElementById('srt-timer-ring'),
+  progressText:   document.getElementById('srt-progress-text'),
+  progressBar:    document.getElementById('srt-progress-bar-fill'),
+  btnStart:       document.getElementById('btn-srt-start'),
+  btnBack:        document.getElementById('btn-srt-back'),
+  btnExit:        document.getElementById('btn-srt-exit'),
+  btnMute:        document.getElementById('btn-srt-mute'),
+  btnFullscreen:  document.getElementById('btn-srt-fullscreen'),
+  muteIcon:       document.getElementById('srt-mute-icon'),
+  btnRestart:     document.getElementById('btn-srt-restart'),
+  btnHome:        document.getElementById('btn-srt-home'),
+  statCount:      document.getElementById('srt-stat-count'),
+  statDuration:   document.getElementById('srt-stat-duration'),
+  selectedCount:  document.getElementById('srt-selected-count'),
+  totalDuration:  document.getElementById('srt-total-duration'),
+  countBtns:      document.querySelectorAll('.opt-btn[data-group="srt-count"]'),
+};
+
+const srtTimer = new WATTimer({
+  onTick: (rem, tot) => {
+    updateRing(srtEl.timerRing, srtEl.timerNumber, rem, tot);
+    srtEl.progressBar.style.width = `${((tot - rem) / tot) * 100}%`;
+    if (rem > 0 && rem < tot) playTick();
+  },
+  onExpire: () => { playBeep(); srtAdvance(); },
+});
+
+function srtUpdateDuration() {
+  const totalSec = srtState.situationCount * SRT_TIME_PER_SITUATION;
+  const m = Math.floor(totalSec / 60);
+  const s = totalSec % 60;
+  srtEl.totalDuration.textContent = s === 0 ? `${m} min` : `${m}m ${s}s`;
+}
+
+function srtInitSettings() {
+  srtEl.countBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      srtEl.countBtns.forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      srtState.situationCount = parseInt(btn.dataset.value, 10);
+      srtEl.selectedCount.textContent = srtState.situationCount;
+      srtUpdateDuration();
+    });
+  });
+}
+
+function srtShowSituation(text, index, total) {
+  srtEl.situationText.classList.remove('srt-enter');
+  void srtEl.situationText.offsetWidth;
+  srtEl.situationText.textContent = text;
+  srtEl.situationText.classList.add('srt-enter');
+  srtEl.situationNum.textContent = `Situation ${String(index + 1).padStart(2, '0')}`;
+  srtEl.progressText.textContent = `${index + 1} / ${total}`;
+}
+
+function srtAdvance() {
+  srtState.currentIndex += 1;
+  if (srtState.currentIndex >= srtState.sessionSituations.length) {
+    srtEndTest();
+    return;
+  }
+  srtShowSituation(
+    srtState.sessionSituations[srtState.currentIndex],
+    srtState.currentIndex,
+    srtState.sessionSituations.length
+  );
+  srtTimer.start(SRT_TIME_PER_SITUATION);
+}
+
+function srtStartTest() {
+  const shuffled = shuffle(SRT_SITUATIONS);
+  srtState.sessionSituations = shuffled.slice(0, srtState.situationCount);
+  srtState.currentIndex = 0;
+  srtState.startTime = Date.now();
+  srtState.running = true;
+
+  srtEl.timerRing.style.strokeDasharray  = `${RING_CIRCUMFERENCE} ${RING_CIRCUMFERENCE}`;
+  srtEl.timerRing.style.strokeDashoffset = 0;
+  srtEl.progressBar.style.width = '0%';
+
+  showScreen('srtTest');
+  enterFullscreen();
+  playStartChime();
+
+  srtShowSituation(srtState.sessionSituations[0], 0, srtState.sessionSituations.length);
+  setTimeout(() => srtTimer.start(SRT_TIME_PER_SITUATION), 300);
+}
+
+function srtEndTest() {
+  srtTimer.stop();
+  srtState.running = false;
+  const duration = Date.now() - srtState.startTime;
+  srtEl.statCount.textContent = srtState.sessionSituations.length;
+  srtEl.statDuration.textContent = formatDuration(duration);
+  exitFullscreen();
+  showScreen('srtComplete');
+}
+
+// SRT event listeners
+srtEl.btnBack.addEventListener('click', () => showScreen('home'));
+srtEl.btnStart.addEventListener('click', srtStartTest);
+srtEl.btnMute.addEventListener('click', toggleMuteAll);
+srtEl.btnFullscreen.addEventListener('click', toggleFullscreen);
+srtEl.btnExit.addEventListener('click', () => {
+  srtTimer.stop();
+  srtState.running = false;
+  exitFullscreen();
+  showScreen('srtLanding');
+});
+srtEl.btnRestart.addEventListener('click', srtStartTest);
+srtEl.btnHome.addEventListener('click', () => showScreen('home'));
+
+srtInitSettings();

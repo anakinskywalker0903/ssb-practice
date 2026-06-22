@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="SSB Psychology Test Simulator — Practice WAT (Word Association Test) and PPDT (Picture Perception & Description Test) used in SSB interviews for Indian Armed Forces." />
+  <meta name="description" content="SSB Psychology Test Simulator — Practice WAT, PPDT and SRT tests used in SSB interviews for Indian Armed Forces selection." />
   <meta name="keywords" content="SSB, WAT, PPDT, Word Association Test, Picture Perception, Psychology Test, Indian Army, Defence, SSB Preparation" />
   <meta name="author" content="SSB Psychology Simulator" />
   <meta property="og:title" content="SSB Psychology Simulator — WAT & PPDT" />
   <meta property="og:description" content="Practice WAT and PPDT tests used in SSB interviews. Distraction-free, timed, military-grade simulator." />
   <meta property="og:type" content="website" />
-  <title>SSB Psychology Simulator — WAT & PPDT</title>
+  <title>SSB Psychology Simulator — WAT, PPDT & SRT</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -34,7 +34,7 @@
         <div class="app-title">
           <span class="title-pre">SSB Psychology</span>
           <h1 class="title-main">Test Simulator</h1>
-          <p class="title-sub">Official-timing practice for WAT &amp; PPDT</p>
+          <p class="title-sub">Official-timing practice for WAT, PPDT &amp; SRT</p>
         </div>
 
         <div class="gold-divider"></div>
@@ -83,6 +83,30 @@
           </button>
 
         </div>
+
+          <!-- SRT Card -->
+          <button class="test-card" id="card-srt" aria-label="Start SRT — Situation Reaction Test">
+            <div class="test-card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <line x1="10" y1="9" x2="8" y2="9"/>
+              </svg>
+            </div>
+            <div class="test-card-body">
+              <div class="test-card-tag srt-tag">Day 2 · Psychology</div>
+              <div class="test-card-name">SRT</div>
+              <div class="test-card-full">Situation Reaction Test</div>
+              <ul class="test-card-info">
+                <li><span class="info-dot srt-dot"></span>60 situations · 30 sec each</li>
+                <li><span class="info-dot srt-dot"></span>Write reaction on paper (3rd person)</li>
+                <li><span class="info-dot srt-dot"></span>120 situation bank, randomised</li>
+              </ul>
+            </div>
+            <div class="test-card-arrow" aria-hidden="true">→</div>
+          </button>
 
         <div class="home-footer">
           <span class="key">F</span> Fullscreen &nbsp;·&nbsp; <span class="key">M</span> Mute &nbsp;·&nbsp; <span class="key">ESC</span> Exit
@@ -443,6 +467,186 @@
         <div class="complete-actions">
           <button class="btn-primary" id="btn-ppdt-next" aria-label="Start next PPDT session">⟳&nbsp;&nbsp;Next Session</button>
           <button class="btn-secondary" id="btn-ppdt-home" aria-label="Back to home">⌂&nbsp;&nbsp;Back to Home</button>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /#app -->
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!--  SRT: LANDING SCREEN                              -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <section id="screen-srt-landing" class="screen" role="main" aria-label="SRT Simulator Setup">
+      <div class="landing-inner">
+
+        <button class="back-btn" id="btn-srt-back" aria-label="Back to home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+          Back
+        </button>
+
+        <div class="badge-corps">
+          <span class="badge-dot"></span>
+          Situation Reaction Test
+        </div>
+
+        <div class="app-title">
+          <span class="title-pre">SSB Psychology Test</span>
+          <h1 class="title-main">SRT Simulator</h1>
+          <p class="title-sub">Situation Reaction Test</p>
+        </div>
+
+        <div class="gold-divider"></div>
+
+        <div class="instructions-card">
+          <div class="card-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            Instructions
+          </div>
+          <ul class="instructions-list">
+            <li><span class="inst-num">01</span><span>A <strong>situation</strong> will appear on screen for <strong>30 seconds</strong>.</span></li>
+            <li><span class="inst-num">02</span><span>Write your <strong>immediate reaction</strong> on paper — what he would do.</span></li>
+            <li><span class="inst-num">03</span><span>Always write in <strong>third person</strong> ("He did...").</span></li>
+            <li><span class="inst-num">04</span><span>Keep it <strong>short</strong> — 1 to 2 lines only. First instinct wins.</span></li>
+            <li><span class="inst-num">05</span><span>Your hero must be <strong>positive, practical, and action-oriented</strong>.</span></li>
+            <li><span class="inst-num">06</span><span>A <strong>buzzer</strong> sounds at 30 seconds. Next situation appears automatically.</span></li>
+          </ul>
+        </div>
+
+        <div class="settings-panel">
+          <div class="setting-group">
+            <div class="setting-label">Number of Situations</div>
+            <div class="opt-buttons" role="group" aria-label="Select situation count">
+              <button class="opt-btn srt-opt" data-group="srt-count" data-value="20" id="opt-srt-20">20</button>
+              <button class="opt-btn srt-opt" data-group="srt-count" data-value="40" id="opt-srt-40">40</button>
+              <button class="opt-btn srt-opt selected" data-group="srt-count" data-value="60" id="opt-srt-60">60 <span style="font-size:0.65em;opacity:0.7">(SSB)</span></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="config-summary">
+          <span>Situations: <span class="config-val srt-config-val" id="srt-selected-count">60</span></span>
+          <span>Time each: <span class="config-val srt-config-val">30s</span></span>
+          <span>Total: <span class="config-val srt-config-val" id="srt-total-duration">30 min</span></span>
+        </div>
+
+        <div class="btn-start-wrap">
+          <button class="btn-start btn-start-srt" id="btn-srt-start" aria-label="Start SRT Session">
+            ▶&nbsp;&nbsp;BEGIN SRT TEST
+          </button>
+          <span class="btn-hint">Press SPACE to start</span>
+        </div>
+
+        <div class="shortcuts-bar" aria-label="Keyboard shortcuts">
+          <div class="shortcut-item"><span class="key">SPACE</span><span>Start Test</span></div>
+          <div class="shortcut-item"><span class="key">F</span><span>Fullscreen</span></div>
+          <div class="shortcut-item"><span class="key">M</span><span>Mute/Unmute</span></div>
+          <div class="shortcut-item"><span class="key">ESC</span><span>Exit</span></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!--  SRT: TEST SCREEN                                 -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <section id="screen-srt-test" class="screen" role="main" aria-label="SRT Test in Progress" aria-live="polite">
+
+      <nav class="test-controls" aria-label="SRT test controls">
+        <div class="control-group">
+          <button class="control-btn exit-btn" id="btn-srt-exit" title="Exit Test (ESC)" aria-label="Exit SRT test">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+          </button>
+        </div>
+        <div class="progress-badge" aria-label="Progress">
+          <strong id="srt-progress-text">1 / 60</strong>
+        </div>
+        <div class="control-group">
+          <button class="control-btn" id="btn-srt-mute" title="Mute (M)" aria-label="Toggle sound">
+            <span id="srt-mute-icon"></span>
+          </button>
+          <button class="control-btn" id="btn-srt-fullscreen" title="Toggle Fullscreen (F)" aria-label="Toggle fullscreen">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <div class="ambient-glow srt-glow" aria-hidden="true"></div>
+
+      <div class="test-main">
+        <div class="srt-situation-container">
+          <div class="srt-situation-num" id="srt-situation-num">Situation 01</div>
+          <div class="srt-situation-text" id="srt-situation-text" aria-label="Current situation" role="status">
+            Ready
+          </div>
+        </div>
+
+        <div class="timer-wrapper" aria-label="Countdown timer">
+          <div class="timer-svg-wrap">
+            <svg class="timer-svg" viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="timer-bg-circle" cx="60" cy="60" r="54"/>
+              <circle class="timer-ring" id="srt-timer-ring" cx="60" cy="60" r="54"/>
+            </svg>
+            <div class="timer-number" id="srt-timer-number" aria-live="off">30</div>
+          </div>
+          <div class="timer-label">seconds</div>
+        </div>
+      </div>
+
+      <div class="progress-bar-track" role="progressbar" aria-label="Test progress">
+        <div class="progress-bar-fill srt-bar" id="srt-progress-bar-fill"></div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!--  SRT: COMPLETE SCREEN                             -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <section id="screen-srt-complete" class="screen" role="main" aria-label="SRT Test Complete">
+      <div class="complete-inner">
+        <div class="complete-icon srt-complete-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="complete-title">SRT Complete</h1>
+          <p class="complete-sub">Reactions recorded. Analyse your OLQs.</p>
+        </div>
+        <div class="gold-divider"></div>
+        <div class="stats-grid">
+          <div class="stat-card srt-stat-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+            </svg>
+            <span class="stat-value" id="srt-stat-count">60</span>
+            <span class="stat-label">Situations Done</span>
+          </div>
+          <div class="stat-card srt-stat-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <span class="stat-value" id="srt-stat-duration">30m 0s</span>
+            <span class="stat-label">Duration</span>
+          </div>
+        </div>
+        <div class="ppdt-story-reminder srt-reminder">
+          <div class="reminder-icon" aria-hidden="true">💡</div>
+          <p>Review your responses. Were your heroes <strong>positive</strong>, <strong>practical</strong>, and did they take <strong>initiative</strong>?</p>
+        </div>
+        <blockquote class="complete-quote">
+          "It is not the mountain we conquer but ourselves." — Sir Edmund Hillary
+        </blockquote>
+        <div class="complete-actions">
+          <button class="btn-primary srt-btn-primary" id="btn-srt-restart" aria-label="Restart SRT">↺&nbsp;&nbsp;Restart SRT</button>
+          <button class="btn-secondary" id="btn-srt-home" aria-label="Back to home">⌂&nbsp;&nbsp;Back to Home</button>
         </div>
       </div>
     </section>
