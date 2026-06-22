@@ -521,8 +521,6 @@ function init() {
   showScreen('home');
 }
 
-init();
-
 // ══════════════════════════════════════════════════════════════════════════════
 //  SRT MODULE
 // ══════════════════════════════════════════════════════════════════════════════
@@ -652,3 +650,6 @@ srtEl.btnRestart.addEventListener('click', srtStartTest);
 srtEl.btnHome.addEventListener('click', () => showScreen('home'));
 
 srtInitSettings();
+
+// ─── Init (called last so all modules are defined) ────────────────────────────
+init();
