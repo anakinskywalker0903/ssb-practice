@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SSB WAT Simulator — Accurately replicate the Word Association Test from the SSB Psychology examination. Practice with 1000+ curated words, military-grade timer, and distraction-free interface." />
+  <meta name="keywords" content="SSB, WAT, Word Association Test, Psychology Test, Indian Army, Defence, SSB Preparation" />
+  <meta name="author" content="SSB WAT Simulator" />
+  <meta property="og:title" content="SSB WAT Simulator" />
+  <meta property="og:description" content="Practice the Word Association Test used in SSB interviews. Distraction-free, timed, military-grade simulator." />
+  <meta property="og:type" content="website" />
+  <title>SSB WAT Simulator — Word Association Test</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⭐</text></svg>" />
+</head>
+<body>
+  <div id="app">
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!--  LANDING SCREEN                                   -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <section id="screen-landing" class="screen" role="main" aria-label="SSB WAT Simulator Landing">
+
+      <div class="landing-inner">
+
+        <!-- Corps Badge -->
+        <div class="badge-corps">
+          <span class="badge-dot"></span>
+          Services Selection Board
+        </div>
+
+        <!-- Title -->
+        <div class="app-title">
+          <span class="title-pre">SSB Psychology Test</span>
+          <h1 class="title-main">WAT Simulator</h1>
+          <p class="title-sub">Word Association Test</p>
+        </div>
+
+        <div class="gold-divider"></div>
+
+        <!-- Instructions -->
+        <div class="instructions-card">
+          <div class="card-header">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            Instructions
+          </div>
+          <ul class="instructions-list">
+            <li>
+              <span class="inst-num">01</span>
+              <span>One word will appear every <strong>15 seconds</strong> on screen.</span>
+            </li>
+            <li>
+              <span class="inst-num">02</span>
+              <span>Write the <strong>first meaningful thought</strong> that comes to mind.</span>
+            </li>
+            <li>
+              <span class="inst-num">03</span>
+              <span>Use a <strong>notebook or answer sheet</strong> — no typing required.</span>
+            </li>
+            <li>
+              <span class="inst-num">04</span>
+              <span>Do <strong>not pause</strong> to think excessively. Write immediately.</span>
+            </li>
+            <li>
+              <span class="inst-num">05</span>
+              <span>A <strong>buzzer</strong> will sound when time is up for each word.</span>
+            </li>
+            <li>
+              <span class="inst-num">06</span>
+              <span>Words are <strong>randomised</strong> every session for genuine practice.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Settings Panel -->
+        <div class="settings-panel">
+          <div class="setting-group">
+            <div class="setting-label">Word Count</div>
+            <div class="opt-buttons" role="group" aria-label="Select word count">
+              <button class="opt-btn" data-group="word-count" data-value="20" id="opt-wc-20">20</button>
+              <button class="opt-btn" data-group="word-count" data-value="40" id="opt-wc-40">40</button>
+              <button class="opt-btn selected" data-group="word-count" data-value="60" id="opt-wc-60">60</button>
+              <button class="opt-btn" data-group="word-count" data-value="100" id="opt-wc-100">100</button>
+            </div>
+          </div>
+          <div class="setting-group">
+            <div class="setting-label">Time Per Word</div>
+            <div class="opt-buttons" role="group" aria-label="Select time per word">
+              <button class="opt-btn" data-group="time" data-value="8" id="opt-t-8">8s</button>
+              <button class="opt-btn" data-group="time" data-value="10" id="opt-t-10">10s</button>
+              <button class="opt-btn" data-group="time" data-value="12" id="opt-t-12">12s</button>
+              <button class="opt-btn selected" data-group="time" data-value="15" id="opt-t-15">15s <span style="font-size:0.65em;opacity:0.7">(SSB)</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Config Summary -->
+        <div class="config-summary">
+          <span>Words: <span class="config-val" id="selected-words">60</span></span>
+          <span>Time/word: <span class="config-val" id="selected-time">15</span>s</span>
+          <span>Total: <span class="config-val" id="total-duration">15 min</span></span>
+        </div>
+
+        <!-- Start Button -->
+        <div class="btn-start-wrap">
+          <button class="btn-start" id="btn-start" aria-label="Start WAT Test">
+            ▶&nbsp;&nbsp;BEGIN TEST
+          </button>
+          <span class="btn-hint">Press SPACE to start</span>
+        </div>
+
+        <!-- Keyboard Shortcuts -->
+        <div class="shortcuts-bar" aria-label="Keyboard shortcuts">
+          <div class="shortcut-item">
+            <span class="key">SPACE</span>
+            <span>Start Test</span>
+          </div>
+          <div class="shortcut-item">
+            <span class="key">F</span>
+            <span>Fullscreen</span>
+          </div>
+          <div class="shortcut-item">
+            <span class="key">M</span>
+            <span>Mute/Unmute</span>
+          </div>
+          <div class="shortcut-item">
+            <span class="key">ESC</span>
+            <span>Exit Test</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!--  TEST SCREEN                                      -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <section id="screen-test" class="screen" role="main" aria-label="WAT Test in Progress" aria-live="polite">
+
+      <!-- Top Controls Bar -->
+      <nav class="test-controls" aria-label="Test controls">
+        <!-- Left: Exit -->
+        <div class="control-group">
+          <button class="control-btn exit-btn" id="btn-exit" title="Exit Test (ESC)" aria-label="Exit test">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+              <polyline points="16 17 21 12 16 7"/>
+              <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Center: Progress -->
+        <div class="progress-badge" aria-label="Progress">
+          <strong id="progress-text">1 / 60</strong>
+        </div>
+
+        <!-- Right: Controls -->
+        <div class="control-group">
+          <button class="control-btn" id="btn-mute" title="Mute (M)" aria-label="Toggle sound">
+            <span id="mute-icon"></span>
+          </button>
+          <button class="control-btn" id="btn-fullscreen" title="Toggle Fullscreen (F)" aria-label="Toggle fullscreen">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+            </svg>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Ambient Glow -->
+      <div class="ambient-glow" aria-hidden="true"></div>
+
+      <!-- Main Test Area -->
+      <div class="test-main">
+
+        <!-- Word Display -->
+        <div class="word-container">
+          <div class="word-display" id="word-display" aria-label="Current word" role="status">
+            READY
+          </div>
+        </div>
+
+        <!-- Timer Ring -->
+        <div class="timer-wrapper" aria-label="Countdown timer">
+          <div class="timer-svg-wrap">
+            <svg class="timer-svg" viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="timer-bg-circle" cx="60" cy="60" r="54"/>
+              <circle class="timer-ring" id="timer-ring" cx="60" cy="60" r="54"/>
+            </svg>
+            <div class="timer-number" id="timer-number" aria-live="off">15</div>
+          </div>
+          <div class="timer-label">seconds</div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Progress Bar -->
+      <div class="progress-bar-track" role="progressbar" aria-label="Test progress">
+        <div class="progress-bar-fill" id="progress-bar-fill"></div>
+      </div>
+
+    </section>
+
+    <!-- ══════════════════════════════════════════════════ -->
+    <!--  COMPLETION SCREEN                                -->
+    <!-- ══════════════════════════════════════════════════ -->
+    <section id="screen-complete" class="screen" role="main" aria-label="Test Complete">
+
+      <div class="complete-inner">
+
+        <!-- Success Icon -->
+        <div class="complete-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+
+        <!-- Title -->
+        <div>
+          <h1 class="complete-title">Test Complete</h1>
+          <p class="complete-sub">Well done, Candidate. Stay focused.</p>
+        </div>
+
+        <div class="gold-divider"></div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+            <span class="stat-value" id="stat-words">60</span>
+            <span class="stat-label">Words Shown</span>
+          </div>
+          <div class="stat-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <span class="stat-value" id="stat-duration">15m 0s</span>
+            <span class="stat-label">Duration</span>
+          </div>
+        </div>
+
+        <!-- Motivational Quote -->
+        <blockquote class="complete-quote">
+          "The soldier is the Army. No army is better than its soldiers."
+          — General George S. Patton
+        </blockquote>
+
+        <!-- Action Buttons -->
+        <div class="complete-actions">
+          <button class="btn-primary" id="btn-restart" aria-label="Restart test with same settings">
+            ↺&nbsp;&nbsp;Restart Same Test
+          </button>
+          <button class="btn-secondary" id="btn-new-random" aria-label="Start new random test">
+            ⟳&nbsp;&nbsp;New Random Session
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </div><!-- /#app -->
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
